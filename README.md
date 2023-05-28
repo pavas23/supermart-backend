@@ -13,9 +13,11 @@ A web based application for an online supermart. This repository contains backen
   - Manager/admin can add or delete items, modify details about the items (price/qty/offers etc.)
   - A user can withdraw himself from the Application.
   - Password change (reset) facility is required.
-### Admin/manager publishing item details
+  
+### Admin/Manager publishing item details
   - Manager or admin users should be allowed to publish the details of the items made available for sale. Details needed are item_name, item_code, price, offer if any, qty available, delivery time etc.
   - A manager or admin can delete the published item whenever required.
+  
 ### Customer order management
   - A customer should be allowed to view/search the items published/available for sale.
   - Select items to the cart.
@@ -24,6 +26,7 @@ A web based application for an online supermart. This repository contains backen
   - Confirm order and make payment
   - User should get a confirmation message with expected delivery date.
   - User will have a Wallet from where payments will be made, and user can top-up the wallet if necessary. But at the time of registration must start with minimum of 1000/-.
+  
 ### Other functionality
   - Admin user should be able to generate reports like – items sold on a date, customer order details(summary) for a month, item stock status etc.
   - Any user can generate his order history (summary) for a given month.
@@ -84,4 +87,27 @@ A web based application for an online supermart. This repository contains backen
   POST /customer/setCart
   POST /customer/deleteCartOne
   POST /customer/sendOrder
+```
+
+
+### Login Endpoints
+
+```java
+  POST /login/auth/customer
+  GET /login/auth/manager
+  GET /login/auth/admin
+  POST /login/auth/customer/getID
+```
+
+### Product Endpoints
+
+```java
+  POST /product/add
+  GET /product/getAll
+  GET /product/getName
+  DELETE /product/deleteOne
+  GET /product/getProduct
+  POST /product/update
+  POST /product/changePrice
+  GET /product/getbyPrice
 ```
