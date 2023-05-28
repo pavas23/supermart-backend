@@ -3,45 +3,6 @@
 
 A web based application for an online supermart. This repository contains backend for this application built using Spring Boot.
 
-## API Reference
-
-### Admin Endpoints
-
-```java
-  GET /admin/allCustomers
-  DELETE /admin/deleteCustomer
-  GET /admin/getCustomer
-  GET /admin/customerHistory
-  POST /admin/addManager
-  GET /admin/allManagers
-  GET /admin/getManager
-  POST /admin/updateManager
-  GET /admin/allProducts
-  DELETE /admin/deleteManager
-  DELETE /admin/deleteProduct
-  GET /admin/getProduct
-  POST /admin/updateProduct
-  GET /admin/monthlyReport
-  GET /admin/totalRevenue
-  GET /admin/monthlyRevenue
-  GET /admin/orders
-```
-
-### Customer Endpoints
-
-```java
-  GET /admin/allCustomers
-  DELETE /admin/deleteCustomer
-```
-
-### Manager Endpoints
-
-```java
-  GET /admin/allCustomers
-  DELETE /admin/deleteCustomer
-```
-
-
 ### User Management
   - A user can be admin, manager or customer
   - Admin is the super user with all permissions.
@@ -67,3 +28,60 @@ A web based application for an online supermart. This repository contains backen
   - Admin user should be able to generate reports like – items sold on a date, customer order details(summary) for a month, item stock status etc.
   - Any user can generate his order history (summary) for a given month.
   
+
+## API Reference
+
+### Admin Endpoints
+
+```java
+  GET /admin/allCustomers
+  DELETE /admin/deleteCustomer
+  GET /admin/getCustomer
+  GET /admin/customerHistory
+  POST /admin/addManager
+  GET /admin/allManagers
+  GET /admin/getManager
+  POST /admin/updateManager
+  GET /admin/allProducts
+  DELETE /admin/deleteManager
+  DELETE /admin/deleteProduct
+  GET /admin/getProduct
+  POST /admin/updateProduct
+  GET /admin/monthlyReport
+  GET /admin/totalRevenue
+  GET /admin/monthlyRevenue
+  GET /admin/orders
+```
+
+### Manager Endpoints
+
+```java
+  POST /manager/addProduct
+  POST /manager/updateProduct
+  DELETE /manager/deleteProduct
+  GET /manager/getAllProducts
+  GET /manager/getProduct
+  GET /manager/getbyPrice
+```
+
+### Customer Endpoints
+
+```java
+  POST /customer/add
+  GET /customer/getAll
+  DELETE /customer/deleteOne
+  POST /customer/getCustomer
+  POST /customer/update
+  POST /customer/addcredit
+  POST /customer/history
+  POST /customer/placeOrder
+  POST /customer/forgotPassword
+  POST /customer/sendOTP
+  POST /customer/reset
+  POST /customer/verify
+  POST /customer/getCart
+  DELETE /customer/deleteCart
+  POST /customer/setCart
+  POST /customer/deleteCartOne
+  POST /customer/sendOrder
+```
