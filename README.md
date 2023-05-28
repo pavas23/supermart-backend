@@ -111,3 +111,11 @@ A web based application for an online supermart. This repository contains backen
   POST /product/changePrice
   GET /product/getbyPrice
 ```
+
+## Tech Stack
+
+- Spring Boot
+- MySQL
+- JPA
+- Spring Mail
+- JWT
