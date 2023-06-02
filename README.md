@@ -26,6 +26,7 @@ A web based application for an online supermart. This repository contains backen
   - Confirm order and make payment
   - User should get a confirmation message with expected delivery date.
   - User will have a Wallet from where payments will be made, and user can top-up the wallet if necessary. But at the time of registration must start with minimum of 1000/-.
+  - User can add review about the website.
   
 ### Other functionality
   - Admin user should be able to generate reports like – items sold on a date, customer order details(summary) for a month, item stock status etc.
