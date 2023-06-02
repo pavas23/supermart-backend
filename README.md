@@ -121,3 +121,6 @@ A web based application for an online supermart. This repository contains backen
 - JPA
 - Spring Mail
 - JWT
+
+### Link to Frontend Repo
+https://github.com/pavas23/supermart-frontend
