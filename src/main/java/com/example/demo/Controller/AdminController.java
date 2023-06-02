@@ -53,7 +53,7 @@ public class AdminController {
         return customerService.getCustomer(customer.getId());
     }
 
-    @GetMapping("/CustomerHistory")
+    @GetMapping("/customerHistory")
     public List<History> getCustomerHistory(@RequestBody Customer customer) {
         return historyService.getCustomerHistory(customer.getId());
     }

@@ -72,10 +72,10 @@ public class CustomerController {
         return "Customer with id " + customer.getId() + " is updated";
     }
 
-    @PostMapping("/addcredit")
+    @PostMapping("/addCredit")
     public String updateCredit(@RequestBody Customer customer) {
         customerService.addCredit(customer);
-        return "Rs." + customer.getCredit() + "added.";
+        return "Rs." + customer.getCredit() + " added.";
     }
 
     @PostMapping("/history")
@@ -228,12 +228,12 @@ public class CustomerController {
         LocalDateTime ldt = LocalDateTime.now();
         DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
         int customerCredit = customerService.getCustomer(PO.getCustomerID()).getCredit();
-        int total_cost = PO.getTotalCost();
-        if (PO.isExpress()) total_cost += 100;
-        if (total_cost - customerCredit > 0) return false;
+        int totalCost = PO.getTotalCost();
+//        if (PO.isExpress()) totalCost += 100; // added this is frontend
+//        if(totalCost > customerCredit) return false; otherwise giving error, added check in client side
         Customer updatedCustomer = customerService.getCustomer(PO.getCustomerID());
         updatedCustomer.setId(PO.getCustomerID());
-        updatedCustomer.setCredit((customerService.getCustomer(PO.getCustomerID()).getCredit() - total_cost));
+        updatedCustomer.setCredit((customerService.getCustomer(PO.getCustomerID()).getCredit() - totalCost));
         customerService.updateCustomer(updatedCustomer);
         List<History> historyList = new ArrayList<>();
         for (Product obj : PO.getProductList()) {
@@ -261,19 +261,24 @@ public class CustomerController {
         order.setCustomerID(PO.getCustomerID());
         order.setDate(ldt.format(myFormatObj));
         order.setExpress(PO.isExpress());
-        order.setTotal_cost(total_cost);
+        order.setTotal_cost(totalCost);
         order.setExpected_date(ldt.plusHours(4).format(myFormatObj));
         order.setName(customerService.getCustomer(PO.getCustomerID()).getName());
         orderService.saveOrder(order);
         EmailDetails ed = new EmailDetails();
         ed.setRecipient(updatedCustomer.getEmail());
         if (PO.isExpress()) {
-            ed.setMsgBody("Thank you for shopping with BBB SuperMart.\n\nYour Order summary is as follows\n\n" + orders + "\n\nTotal Bill Amount: \u20B9" + total_cost + "\n\nShipping Type: Express Shipping (+\u20B9100) \n\nExpected Delivery Date: " + historyList.get(0).getExpected_date() + "\n\nDelivery Address: " + historyList.get(0).getAddress());
+            ed.setMsgBody("Thank you for shopping with BBB SuperMart.\n\nYour Order summary is as follows\n\n" + orders + "\n\nTotal Bill Amount: \u20B9" + totalCost + "\n\nShipping Type: Express Shipping (+\u20B9100) \n\nExpected Delivery Date: " + historyList.get(0).getExpected_date() + "\n\nDelivery Address: " + historyList.get(0).getAddress());
         }else {
-            ed.setMsgBody("Thank you for shopping with BBB SuperMart.\n\nYour Order summary is as follows\n\n" + orders + "\n\nTotal Bill Amount: \u20B9" + total_cost + "\n\nShipping Type: Regular Shipping\\n\\nExpected Delivery Date: " + historyList.get(0).getExpected_date() + "\n\nDelivery Address: " + historyList.get(0).getAddress());
+            ed.setMsgBody("Thank you for shopping with BBB SuperMart.\n\nYour Order summary is as follows\n\n" + orders + "\n\nTotal Bill Amount: \u20B9" + totalCost + "\n\nShipping Type: Regular Shipping\n\nExpected Delivery Date: " + historyList.get(0).getExpected_date() + "\n\nDelivery Address: " + historyList.get(0).getAddress());
         }
         ed.setSubject("Tax invoice for " + historyList.get(0).getDate());
         emailService.sendSimpleMail(ed);
         return true;
+    }
+
+    @PostMapping("/addReview")
+    public void addReview(@RequestBody Customer customer){
+        customerService.addReview(customer);
     }
 }

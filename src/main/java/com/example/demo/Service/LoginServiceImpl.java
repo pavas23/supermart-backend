@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 import com.example.demo.Util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import com.example.demo.Model.Admin;
 import com.example.demo.Model.Customer;
@@ -23,11 +24,12 @@ public class LoginServiceImpl implements LoginAuthService{
     @Autowired
     private JwtUtil jwtUtil;
     CustomerServiceImpl c = new CustomerServiceImpl();
+    BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
     @Override
     public Customer verifyCustomer(Customer customer){
         List <Customer> list = customerRepo.findAll();
         for(Customer obj:list) {
-            if(obj.getEmail().equals(customer.getEmail()) && c.bCryptPasswordEncoder.matches(customer.getPassword(), obj.getPassword())) {
+            if(obj.getEmail().equals(customer.getEmail()) && bCryptPasswordEncoder.matches(customer.getPassword(), obj.getPassword())) {
                 String token = jwtUtil.generateJwt(obj);
                 obj.setAuthToken(token);
                 customerRepo.save(obj);

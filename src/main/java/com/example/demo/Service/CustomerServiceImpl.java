@@ -35,6 +35,7 @@ public class CustomerServiceImpl implements CustomerService {
 		Pattern pattern = Pattern.compile("f20[0-9]{6}(@hyderabad.bits-pilani.ac.in)");
 		Matcher m = pattern.matcher(customer.getEmail());
 		if(m.matches()) {
+			String tempPass = "random";
 			customer.setPassword(bCryptPasswordEncoder.encode(customer.getPassword()));
 			customerRepo.save(customer);
 			return true;
@@ -68,11 +69,11 @@ public class CustomerServiceImpl implements CustomerService {
 		int id = -1;
 		List <Customer> customers = customerRepo.findAll();
 		for (Customer obj : customers) {
-			if((customer.getEmail().equals(obj.getEmail())) &&  bCryptPasswordEncoder.matches(customer.getPassword(), obj.getPassword())) {
+			if((customer.getEmail().equals(obj.getEmail()))) {
 				 id = obj.getId();
-				 if(id >0) {
+				 if(id > 0) {
 						customerRepo.deleteById(id);
-					}
+				 }
 			}
 		}
 	}
@@ -148,11 +149,16 @@ public class CustomerServiceImpl implements CustomerService {
 		if(customer.getCredit()<0)return;
 		List <Customer> customers = this.getAllCustomers();
 		for (Customer obj : customers) {
-			if(customer.getEmail().equals(obj.getEmail()) && bCryptPasswordEncoder.matches(customer.getPassword(), obj.getPassword())) {
+			if(customer.getEmail().equals(obj.getEmail())) {
 				 id = obj.getId();
 				 if(id >0) {
 						Customer updatedCustomer = new Customer();
 						updatedCustomer.setId(id);
+						updatedCustomer.setAddress(obj.getAddress());
+						updatedCustomer.setMobileNumber(obj.getMobileNumber());
+						updatedCustomer.setReview(obj.getReview());
+						updatedCustomer.setPassword(obj.getPassword());
+						updatedCustomer.setAuthToken(obj.getAuthToken());
 						updatedCustomer.setName(obj.getName());
 						updatedCustomer.setEmail(obj.getEmail());
 						updatedCustomer.setCredit(obj.getCredit()+customer.getCredit());
@@ -177,4 +183,11 @@ public class CustomerServiceImpl implements CustomerService {
     public void deleteById(Customer customer) {
         customerRepo.deleteById(customer.getId());
     }
+
+	@Override
+	public void addReview(Customer customer){
+		Customer updatedCustomer = this.findByMail(customer);
+		updatedCustomer.setReview(customer.getReview());
+		customerRepo.save(updatedCustomer);
+	}
 }

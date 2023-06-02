@@ -13,4 +13,5 @@ public interface CustomerService {
 	public void deleteById(Customer customer);
 	public Customer findByMail(Customer customer);
 	public void updateCustomerByMail(Customer customer);
+	public void addReview(Customer customer);
 }
