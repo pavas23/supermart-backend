@@ -75,7 +75,7 @@ A web based application for an online supermart. This repository contains backen
   DELETE /customer/deleteOne
   POST /customer/getCustomer
   POST /customer/update
-  POST /customer/addcredit
+  POST /customer/addCredit
   POST /customer/history
   POST /customer/placeOrder
   POST /customer/forgotPassword
@@ -87,6 +87,7 @@ A web based application for an online supermart. This repository contains backen
   POST /customer/setCart
   POST /customer/deleteCartOne
   POST /customer/sendOrder
+  POST /customer/addReview
 ```
 
 
