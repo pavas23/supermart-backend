@@ -8,6 +8,8 @@ public class User {
     private String password;
     private String address;
     private String mobileNumber;
+    private String authToken="";
+
     public String getName() {
         return name;
     }
@@ -37,5 +39,11 @@ public class User {
     }
     public void setMobileNumber(String mobileNumber) {
         this.mobileNumber = mobileNumber;
+    }
+    public void setAuthToken(String authToken){
+        this.authToken = authToken;
+    }
+    public String getAuthToken(){
+        return this.authToken;
     }
 }

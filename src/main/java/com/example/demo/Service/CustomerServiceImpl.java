@@ -35,7 +35,6 @@ public class CustomerServiceImpl implements CustomerService {
 		Pattern pattern = Pattern.compile("f20[0-9]{6}(@hyderabad.bits-pilani.ac.in)");
 		Matcher m = pattern.matcher(customer.getEmail());
 		if(m.matches()) {
-			String tempPass = "random";
 			customer.setPassword(bCryptPasswordEncoder.encode(customer.getPassword()));
 			customerRepo.save(customer);
 			return true;

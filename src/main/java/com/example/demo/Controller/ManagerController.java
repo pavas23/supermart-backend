@@ -40,7 +40,7 @@ public class ManagerController {
         catch (Exception e) {
             e.printStackTrace();
         }
-        return "Product with id : " + product.getId()+ " has been updated" ;
+        return "Product with id : " + product.getId()+ " has been deleted" ;
     }
 
     @GetMapping("/getAllProducts")

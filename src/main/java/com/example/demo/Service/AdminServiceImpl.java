@@ -13,9 +13,16 @@ public class AdminServiceImpl implements AdminService{
     BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
     
     @Override
-    public Admin saveAdmin(Admin admin) {
+    public boolean saveAdmin(Admin admin) {
+        List<Admin> adminList = adminRepo.findAll();
+        for(Admin obj : adminList){
+            if(obj.getEmail().equals(admin.getEmail())){
+                return false;
+            }
+        }
         admin.setPassword(bCryptPasswordEncoder.encode(admin.getPassword()));
-        return adminRepo.save(admin);
+        adminRepo.save(admin);
+        return true;
     }
 
     @Override
@@ -25,7 +32,7 @@ public class AdminServiceImpl implements AdminService{
 
     @Override
     public Admin getAdmin(int id) {
-        return adminRepo.findById(id).get();
+        return (Admin) adminRepo.findById(id).get();
     }
 
     @Override

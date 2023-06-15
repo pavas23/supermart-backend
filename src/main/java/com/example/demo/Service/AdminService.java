@@ -3,7 +3,7 @@ import java.util.List;
 import com.example.demo.Model.Admin;
 
 public interface AdminService {
-    public Admin saveAdmin(Admin admin);
+    public boolean saveAdmin(Admin admin);
     public List<Admin> getAllAdmins();
     public Admin getAdmin(int id);
     public void deleteAdmin(Admin admin);

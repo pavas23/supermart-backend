@@ -1,6 +1,7 @@
 package com.example.demo.Util;
 
 import com.example.demo.Model.Customer;
+import com.example.demo.Model.Admin;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import org.springframework.stereotype.Component;
@@ -13,6 +14,11 @@ public class JwtUtil {
     public String generateJwt(Customer customer){
         Date issuedAt = new Date();
         Claims claims = Jwts.claims().setIssuer(customer.getEmail().toString()).setIssuedAt(issuedAt);
+        return Jwts.builder().setClaims(claims).compact();
+    }
+    public String generateJwtAdmin(Admin admin){
+        Date issuedAt = new Date();
+        Claims claims = Jwts.claims().setIssuer(admin.getEmail().toString()).setIssuedAt(issuedAt);
         return Jwts.builder().setClaims(claims).compact();
     }
 }

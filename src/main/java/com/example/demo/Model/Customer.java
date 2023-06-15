@@ -15,7 +15,6 @@ public class Customer extends User{
 	private String reset_code; 
 	private String review;
 	private boolean verify;
-	private String authToken="";
 
 	public Customer(){
 	    reset_code = "-1";
@@ -52,10 +51,4 @@ public class Customer extends User{
     public void setVerify(boolean verify) {
         this.verify = verify;
     }
-	public void setAuthToken(String authToken){
-		this.authToken = authToken;
-	}
-	public String getAuthToken(){
-		return this.authToken;
-	}
 }

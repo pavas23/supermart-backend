@@ -42,10 +42,20 @@ public class LoginServiceImpl implements LoginAuthService{
     public int getCustomerID(Map<String,String> authTokenMap){
         List <Customer> list = customerRepo.findAll();
         String authToken = authTokenMap.get("authToken");
-        System.out.println("at "+authToken);
         for(Customer obj : list){
             System.out.println(obj.getAuthToken());
             if(obj.getAuthToken().equals((authToken))){
+                return obj.getId();
+            }
+        }
+        return -1;
+    }
+
+    public int getAdminID(Map<String,String> authTokenMap){
+        List<Admin> list = adminRepo.findAll();
+        String authToken = authTokenMap.get("adminToken");
+        for(Admin obj : list){
+            if(obj.getAuthToken().equals(authToken)){
                 return obj.getId();
             }
         }
@@ -68,6 +78,9 @@ public class LoginServiceImpl implements LoginAuthService{
         List <Admin> list = adminRepo.findAll();
         for(Admin obj:list) {
             if(obj.getEmail().equals(admin.getEmail()) && c.bCryptPasswordEncoder.matches(admin.getPassword(), obj.getPassword())) {
+                String token = jwtUtil.generateJwtAdmin(obj);
+                obj.setAuthToken(token);
+                adminRepo.save(obj);
                 return obj;
             }
         }

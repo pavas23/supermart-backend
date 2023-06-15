@@ -15,11 +15,13 @@ import com.example.demo.Service.HistoryService;
 import com.example.demo.Service.ManagerService;
 import com.example.demo.Service.OrderService;
 import com.example.demo.Service.ProductService;
+import com.example.demo.Service.AdminService;
 import com.example.demo.Model.Customer;
 import com.example.demo.Model.History;
 import com.example.demo.Model.Manager;
 import com.example.demo.Model.OrderList;
 import com.example.demo.Model.Product;
+import com.example.demo.Model.Admin;
 
 @CrossOrigin
 @RestController
@@ -35,6 +37,19 @@ public class AdminController {
     HistoryService historyService;
     @Autowired
     OrderService orderService;
+
+    @Autowired
+    AdminService adminService;
+
+    @PostMapping("/getAdmin")
+    public Admin getAdminDetails(@RequestBody Admin admin) {
+        return adminService.getAdmin(admin.getId());
+    }
+
+    @PostMapping("/add")
+    public boolean saveAdmin(@RequestBody Admin admin){
+        return adminService.saveAdmin(admin);
+    }
 
     @GetMapping("/allCustomers")
     public List<Customer> getAllCustomers() {

@@ -33,6 +33,9 @@ public class ProductServiceImpl implements ProductService{
                 if(product.getName()!=null) {
                     obj.setName(product.getName());
                 }
+                if(product.getSrc() != null){
+                    obj.setSrc(product.getSrc());
+                }
                 if(product.getPrice()!=0) {
                     obj.setPrice(product.getPrice());
                 }

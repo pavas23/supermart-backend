@@ -3,15 +3,15 @@ import java.util.List;
 import com.example.demo.Model.Customer;
 
 public interface CustomerService {
-	public boolean saveCustomer(Customer customer);
-	public List<Customer> getAllCustomers();
-	public Customer getCustomer(int id);
-	public void deleteCustomer(Customer customer);
-	public void updateCustomer(Customer customer);
-	public void addCredit(Customer customer);
-	public String  isPresent(Customer customer);
-	public void deleteById(Customer customer);
-	public Customer findByMail(Customer customer);
-	public void updateCustomerByMail(Customer customer);
-	public void addReview(Customer customer);
+	boolean saveCustomer(Customer customer);
+	List<Customer> getAllCustomers();
+	Customer getCustomer(int id);
+	void deleteCustomer(Customer customer);
+	void updateCustomer(Customer customer);
+	void addCredit(Customer customer);
+	String  isPresent(Customer customer);
+	void deleteById(Customer customer);
+	Customer findByMail(Customer customer);
+	void updateCustomerByMail(Customer customer);
+	void addReview(Customer customer);
 }

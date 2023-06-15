@@ -17,16 +17,20 @@ public class LoginController {
     public Customer auth(@RequestBody Customer customer) {
               return loginAuthService.verifyCustomer(customer);
     }
-    @GetMapping("/auth/manager")
+    @PostMapping("/auth/manager")
     public Manager auth(@RequestBody Manager manager) {
               return loginAuthService.verifyManager(manager);
     }
-    @GetMapping("/auth/admin")
+    @PostMapping("/auth/admin")
     public Admin auth(@RequestBody Admin admin) {
               return loginAuthService.verifyAdmin(admin);
     }
     @PostMapping("/auth/customer/getID")
     public int auth(@RequestBody Map<String,String> authToken){
         return loginAuthService.getCustomerID(authToken);
+    }
+    @PostMapping("/auth/admin/getID")
+    public int authAdmin(@RequestBody Map<String,String> authToken){
+        return loginAuthService.getAdminID(authToken);
     }
 }
