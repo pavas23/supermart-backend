@@ -37,6 +37,8 @@ A web based application for an online supermart. This repository contains backen
 ### Admin Endpoints
 
 ```java
+  POST /admin/getAdmin
+  POST /admin/add
   GET /admin/allCustomers
   DELETE /admin/deleteCustomer
   GET /admin/getCustomer
@@ -98,6 +100,7 @@ A web based application for an online supermart. This repository contains backen
   GET /login/auth/manager
   GET /login/auth/admin
   POST /login/auth/customer/getID
+  POST /login/auth/admin/getID
 ```
 
 ### Product Endpoints
