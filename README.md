@@ -171,6 +171,7 @@ A web based application for an online supermart. This repository contains backen
   spring.mail.properties.mail.smtp.starttls.enable=true
   ```
 7. Run ```DemoApplication.java``` file to start the ```JVM```
+8. Once backend server starts apis can be accessed through ```http://127.0.0.1:${port}/```
 
 ## Tech Stack
 
