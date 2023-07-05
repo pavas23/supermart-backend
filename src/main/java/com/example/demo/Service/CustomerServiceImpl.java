@@ -28,7 +28,7 @@ public class CustomerServiceImpl implements CustomerService {
 	public boolean saveCustomer(Customer customer) {
 	    List <Customer> list = customerRepo.findAll();
 	    for(Customer obj : list) {
-	        if(obj.getEmail().equals(customer.getEmail()) && (obj.isVerify())){
+	        if(obj.getEmail().equals(customer.getEmail())){
 				return false;
 	        }
 	    }
