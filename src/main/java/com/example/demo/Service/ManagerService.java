@@ -3,7 +3,7 @@ import java.util.List;
 import com.example.demo.Model.Manager;
 
 public interface ManagerService {
-    public Manager saveManager(Manager Manager);
+    public boolean saveManager(Manager Manager);
     public List<Manager> getAllManagers();
     public Manager getManager(int id);
     public void deleteManager(Manager Manager);

@@ -62,11 +62,25 @@ public class LoginServiceImpl implements LoginAuthService{
         return -1;
     }
 
+    public int getManagerID(Map<String,String> authTokenMap){
+        List<Manager> list = managerRepo.findAll();
+        String authToken = authTokenMap.get("managerToken");
+        for(Manager obj : list){
+            if(obj.getAuthToken().equals(authToken)){
+                return obj.getId();
+            }
+        }
+        return -1;
+    }
+
     @Override
     public Manager verifyManager(Manager manager) {
         List <Manager> list = managerRepo.findAll();
         for(Manager obj:list) {
             if(obj.getEmail().equals(manager.getEmail()) && c.bCryptPasswordEncoder.matches(manager.getPassword(), obj.getPassword())) {
+                String token = jwtUtil.generateJwtManager(obj);
+                obj.setAuthToken(token);
+                managerRepo.save(obj);
                 return obj;
             }
         }

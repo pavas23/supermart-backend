@@ -33,4 +33,8 @@ public class LoginController {
     public int authAdmin(@RequestBody Map<String,String> authToken){
         return loginAuthService.getAdminID(authToken);
     }
+    @PostMapping("/auth/manager/getID")
+    public int authManager(@RequestBody Map<String,String> authToken){
+        return loginAuthService.getManagerID(authToken);
+    }
 }

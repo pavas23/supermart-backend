@@ -11,4 +11,5 @@ public interface LoginAuthService {
     public Admin verifyAdmin(Admin admin);
     public int getCustomerID(Map<String,String> authToken);
     public int getAdminID(Map<String,String> authToken);
+    public int getManagerID(Map<String,String> authToken);
 }

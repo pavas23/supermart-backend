@@ -2,6 +2,7 @@ package com.example.demo.Service;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -15,14 +16,21 @@ public class ManagerServiceImpl implements ManagerService{
     ManagerRepository managerRepo;
     BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
     @Override
-    public Manager saveManager(Manager manager) {
+    public boolean saveManager(Manager manager) {
+        List<Manager> list = managerRepo.findAll();
+        for(Manager obj : list){
+            if(obj.getEmail().equals(manager.getEmail())){
+                return false;
+            }
+        }
         Pattern pattern = Pattern.compile("f20[0-9]{6}(@hyderabad.bits-pilani.ac.in)");
         Matcher m = pattern.matcher(manager.getEmail());
-        if(!m.matches()) {
-        manager.setPassword(bCryptPasswordEncoder.encode(manager.getPassword()));
-        return managerRepo.save(manager);
+        if(m.matches()) {
+            manager.setPassword(bCryptPasswordEncoder.encode(manager.getPassword()));
+            managerRepo.save(manager);
+            return true;
         }
-        return new Manager();
+        return false;
     }
 
     @Override
